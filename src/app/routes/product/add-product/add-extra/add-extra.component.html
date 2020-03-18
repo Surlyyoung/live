@@ -1,0 +1,29 @@
+<nz-card nzTitle="商品参数" nz-row [nzBordered]="false">
+  <form nz-form [formGroup]="form" se-container="1">
+
+    <div nz-col nzSpan="12" nzXl="8">
+      <se label="状态">
+        <nz-radio-group formControlName="valid">
+          <label nz-radio [nzValue]="1">发布</label>
+          <label nz-radio [nzValue]="2">草稿</label>
+        </nz-radio-group>
+      </se>
+
+      <se label="上架时间">
+        <nz-date-picker [nzShowTime]="{ 'nzFormat': 'HH:mm' }" nzFormat="yyyy-MM-dd HH:mm" formControlName="publishDate"
+          (ngModelChange)="onChange($event)">
+        </nz-date-picker>
+        <div class="form-tips"><i nz-icon class="exclamation-circle" nzType="exclamation-circle"
+            nzTheme="outline"></i>上架时间即默认发布时间</div>
+      </se>
+
+    </div>
+
+
+    <footer-toolbar errorCollect>
+      <button nz-button nzType="default" (click)="goBack()">取 消</button>
+      <button nz-button nzType="primary" (click)="prevStep()">上一步</button>
+    </footer-toolbar>
+
+  </form>
+</nz-card>

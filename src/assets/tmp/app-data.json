@@ -1,0 +1,30 @@
+{
+  "app": {
+    "name": "live",
+    "description": "Ng-zorro admin panel front-end framework"
+  },
+  "user": {
+    "name": "surly",
+    "avatar": "./assets/tmp/img/avatar.jpg",
+    "email": "surlyyoung@gmail.com"
+  },
+  "menu": [
+    {
+      "text": "主导航",
+      "group": false,
+      "hideInBreadcrumb": true,
+      "children": [
+        {
+          "text": "商品",
+          "link": "/product",
+          "icon": "anticon-appstore"
+        },
+        {
+          "text": "直播",
+          "link": "/live",
+          "icon": "anticon-rocket"
+        }
+      ]
+    }
+  ]
+}

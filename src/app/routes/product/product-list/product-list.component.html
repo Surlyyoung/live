@@ -1,0 +1,66 @@
+<div class="page-container">
+
+  <div class="nav-list">
+    <div class="nav-title nav-item">商品管理</div>
+    <div class="nav-item">商品列表</div>
+    <div class="nav-item">添加直播</div>
+  </div>
+
+  <div class="nav-content">
+
+    <nz-page-header nzTitle="商品管理"> </nz-page-header>
+
+    <nz-card [nzBordered]="false">
+      <nz-tabset [nzSelectedIndex]="pos">
+        <nz-tab (nzClick)="switchTo(tab)" *ngFor="let tab of tabs" [nzTitle]="tab.name"></nz-tab>
+      </nz-tabset>
+
+      <div *ngIf="pos===0" class="content-wrapper">
+
+        <div nz-row [nzGutter]="{ xs: 8, sm: 8, md: 8, lg: 24, xl: 48, xxl: 48 }">
+          <div nz-col nzMd="12" nzSm="24">
+            <nz-button-group>
+              <button class="margin-b" [nzType]="'primary'" nz-button (click)="add()">
+                <span>添加商品</span>
+              </button>
+              <!-- <button nz-button (click)="remove()">批量删除</button> -->
+            </nz-button-group>
+          </div>
+          <div nz-col nzMd="12" nzSm="24">
+            <form nz-form [nzLayout]="'inline'" (ngSubmit)="gosearch()" class="search__form">
+              <div nz-row class="text-right">
+                <!-- <div nz-col nzMd="12"> -->
+                <nz-form-item>
+                  <!-- <nz-form-label nzFor="status">名称</nz-form-label> -->
+                  <nz-form-control>
+                    <input placeholder="请输入关键字" class="input-search" name="name" nz-input />
+                  </nz-form-control>
+                  <button nz-button type="submit" [nzLoading]="loading" class="mx-sm">查询</button>
+                </nz-form-item>
+                <!-- </div> -->
+                <!-- <div nz-col nzMd="12"> -->
+                <!-- <button nz-button type="reset" (click)="reset()" class="mx-sm">重置</button> -->
+                <!-- </div> -->
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- <st #st [columns]="columns" [widthMode]="{ type: 'strict' }" [data]="prodSrv.data" [loading]="loading"
+            [total]="prodSrv.allCount" [page]="stPage" [pi]="prodSrv.nowPage" [ps]="prodSrv.pageSize"
+            (change)="stChange($event)">
+            <ng-template st-row="picCustom" let-item>
+              <nz-avatar [nzSize]="60" nzShape="square" [nzSrc]="item.picUrl"></nz-avatar>
+            </ng-template>
+            <ng-template st-row="sort" let-item>
+              <span>{{item.sort}}</span><br>
+              <span>{{item.series}}</span>
+            </ng-template>
+          </st> -->
+      </div>
+
+    </nz-card>
+
+  </div>
+
+</div>

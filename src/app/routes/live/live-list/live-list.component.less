@@ -1,0 +1,38 @@
+.page-container {
+  display: flex;
+  height: 100%;
+
+  .nav-list {
+    display: flex;
+    flex: 0 0 140px;
+    flex-direction: column;
+    // margin-right: 24px;
+    text-align: center;
+    background-color: #fff;
+
+    .nav-item {
+      padding: 10px;
+      cursor: pointer;
+
+
+      &:hover {
+        background-color: #f3f3f3;
+      }
+
+      &.nav-title {
+        margin-top: 10px;
+        font-weight: 600;
+        cursor: auto;
+
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+  .nav-content {
+    flex: auto;
+    margin: 0 24px 24px;
+  }
+}

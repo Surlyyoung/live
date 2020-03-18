@@ -1,0 +1,31 @@
+<nz-card nzTitle="基本信息" nz-row [nzBordered]="false">
+  <form nz-form [formGroup]="form" se-container="1">
+
+    <div nz-col nzSpan="12" nzXl="8">
+      <se label="商品名称" error="请填写名称" required>
+        <input autocomplete="off" nz-input formControlName="name" placeholder="请输入商品名称" />
+      </se>
+
+      <se label="商品简介" error="请输入100字以内商品简介">
+        <textarea nz-input formControlName="description" maxlength="100" [nzAutosize]="{ minRows: 5 }"
+          name="description" placeholder="示例：冷淡风 | I Frutti Del Mostro 恶魔果实系列（100字以内）"></textarea>
+      </se>
+
+      <se label="商品价格" required error="请输入正确的商品价格">
+        <input class="input-price" autocomplete="off" nz-input formControlName="salePrice" placeholder="请输入商品价格" />
+        <span class="unit-text">元</span>
+      </se>
+      <se label="库存" required error="请输入正确的库存">
+        <input autocomplete="off" nz-input formControlName="storeCount" placeholder="请输入库存(输入数字)" />
+        <span class="unit-text">件</span>
+      </se>
+
+
+      <footer-toolbar errorCollect>
+        <button nz-button nzType="default" (click)="goBack()">取 消</button>
+        <button nz-button nzType="primary" (click)="nextStep()">保存/下一步</button>
+      </footer-toolbar>
+
+    </div>
+  </form>
+</nz-card>

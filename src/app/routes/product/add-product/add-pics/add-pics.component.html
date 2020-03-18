@@ -1,0 +1,90 @@
+<nz-card nz-row [nzBordered]="false">
+  <form nz-form [formGroup]="form" se-container="1">
+    <div nz-col nzSpan="24">
+      <se label="商品主图" error="" required>
+        <app-image-uploader tips="" [parentNode]="this" [mediaUrl]="'piclist'" [maxCount]="3" #imgLoader>
+        </app-image-uploader>
+        <div class="form-tips img-tips"><i nz-icon class="exclamation-circle" nzType="exclamation-circle"
+            nzTheme="outline"></i>主图默认第一张，商品主图大小不能超过3M，尺寸比例为1:1</div>
+      </se>
+      <se label="详情描述" error="" required>
+        <div class="editor-wrapper">
+          <div class="editor-title">
+            <div class="title-desc">单张图片大小不超过3M</div>
+            <div class="title-desc"></div>
+          </div>
+          <div class="editor-content">
+            <div class="editor-main">
+              <!-- 编辑段落 -->
+              <div class="edit-html">
+                <div *ngFor="let item of paragraphs; let i = index" class="editor-paragraph">
+                  <p *ngIf="item.categoryInner === 'text'" [innerHTML]="item.description"></p>
+                  <img style="max-width: 100%;" *ngIf="item.categoryInner === 'img'" [src]="item.picUrl" />
+
+                  <!-- 按钮 -->
+                  <div class="edit-btns">
+                    <div class="wrapper">
+                      <div *ngIf="i !== 0 && paragraphs.length != 1" class="btn" (click)="moveUp(i)">上移</div>
+                      <div *ngIf="i !== paragraphs.length - 1 && paragraphs.length != 1" class="btn"
+                        (click)="moveDown(i)">
+                        下移
+                      </div>
+                      <!-- <div class="btn" (click)="addPicByIndex(i)">
+                          <span>添加图片</span>
+                          <app-image-uploader class="btn-img-uploader text-inside" size="small" [hasCallback]="true"
+                            callbackFn="confirmImage" [parentNode]="this" #btnLoader>
+                          </app-image-uploader>
+                        </div> -->
+                      <div class="btn" (click)="deletePara(i)">删除</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 编辑框 -->
+              <div *ngIf="isEdit" class="editor-textarea">
+                <div class="textarea-body">
+                  <textarea nz-input formControlName="tempStr" id="tempStr" name="tempStr"
+                    [nzAutosize]="{ minRows: 6, maxRows: 8 }" placeholder="最多输入300字"></textarea>
+                </div>
+                <div class="textarea-foote text-right">
+                  <button nz-button (click)="editCancle()">取消</button>
+                  <button nz-button nzType="primary" (click)="editDone()">确定</button>
+                </div>
+              </div>
+
+              <!-- 底部按钮 -->
+              <div (mouseover)="isHover = true" (mouseout)="isHover = false" class="editor-foot">
+                <div *ngIf="!isHover" class="btn-wrapper">
+                  <div class="btn-main">
+                    <i nz-icon nzType="plus"></i>
+                    <span>添加</span>
+                  </div>
+                </div>
+                <div *ngIf="isHover" class="btn-wrapper">
+                  <div class="btn-main">
+                    <i nz-icon nzType="picture"></i>
+                    <span>图片</span>
+                    <app-image-uploader class="btn-img-uploader" size="small" [hasCallback]="true"
+                      callbackFn="confirmImage" [parentNode]="this" #textereaLoader>
+                    </app-image-uploader>
+                  </div>
+                  <div class="btn-main" (click)="isEdit = true">
+                    <i nz-icon nzType="edit"></i>
+                    <span>文字</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </se>
+
+      <footer-toolbar errorCollect>
+        <button nz-button nzType="default" (click)="prevStep()">上一步</button>
+        <button nz-button nzType="default" (click)="nextStep()">下一步</button>
+        <button nz-button nzType="primary" [nzLoading]="submitLoading" (click)="submitForm()">提 交</button>
+      </footer-toolbar>
+    </div>
+  </form>
+</nz-card>

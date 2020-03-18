@@ -1,0 +1,49 @@
+<div class="upload-wrap" [ngClass]="size==='large'?'lg':size==='small'?'sm':size==='auto'?'auto':'md'">
+  <div class="uploadWrap">
+    <div *ngFor="let picUrl of picUrls; let i=index"
+      [ngClass]="size==='large'?'lg':size==='small'?'sm':size==='auto'?'auto':'md'" class="uploadArea"
+      [ngStyle]="{'background-image':'url('+picUrl.src+')'}">
+      <div class="mask"><span class="icon-delete" (click)="removePic(i,picUrl)">+</span></div>
+    </div>
+    <div title="选择图片" (click)="selectFile(tplInput)"
+      [ngClass]="size==='large'?'lg':size==='small'?'sm':size==='auto'?'auto':'md'" class="upload-input">
+      <span class="icon-plus">+</span>
+    </div>
+  </div>
+  <small *ngIf="size!=='small'&&size!=='auto'" class="tips">{{tips}}</small>
+</div>
+
+<ng-template #tplInput>
+  <div class="uploadWrap uploadTpl">
+    <div class="search-wrap" [ngStyle]="{'width':'50%','margin-left':'10px'}">
+      <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+        <input type="text" nz-input [(ngModel)]="searchCond.name" placeholder="输入名称搜索" />
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+        <button class="btn btn-search" nz-button nzType="grey" (click)="searchImg()" nzSearch><span>搜索</span></button>
+      </ng-template>
+      <button class="btn btn-reset" (click)="resetSearch()">重置</button>
+    </div>
+
+    <div class="breadcrumb" *ngIf="levels.length>1">
+      <span *ngFor="let item of levels;let i=index;">
+        <a [class]="levels.length-1==i?'color-999':'color-333'" (click)="navTo(item,i)">
+          <i nz-icon nzType="home" *ngIf="i==0"></i><span>{{item.name}}{{levels.length-1!=i?' > ':''}}</span>
+        </a>
+      </span>
+    </div>
+
+    <div class="upload-input">
+      <span class="icon-plus">+</span>
+      <input class="input" accept="image/*" title="" multiple type="file" (change)="handleChange($event)">
+    </div>
+    <div *ngFor="let pic of list;let i = index" (click)="selectFileInList(i,pic)"
+      [ngClass]="{'selected':selectedObj[pic.picUrl]}" class="upload-input img-list"
+      [ngStyle]="{'background-image':'url('+(pic.picUrl||'/assets/img/folder.png')+')'}" [title]="pic.name">
+      <div class="mask"><span class="icon-select">{{selectedObj[pic.picUrl]}}</span></div>
+      <div class="name">{{pic.name}}</div>
+    </div>
+  </div>
+  <nz-pagination [nzTotal]="allCount" [nzPageSize]="pageSize" [(nzPageIndex)]="nowPage"
+    (nzPageIndexChange)="changePageIndex()"></nz-pagination>
+</ng-template>

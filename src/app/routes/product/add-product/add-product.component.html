@@ -1,0 +1,31 @@
+<div class="page-container">
+  <nz-page-header nzTitle="添加商品">
+    <nz-page-header-extra>
+      <button nz-button>返回列表</button>
+    </nz-page-header-extra>
+  </nz-page-header>
+
+  <nz-card [nzBordered]="false" style="margin-top:0px;">
+    <nz-tabset [nzSelectedIndex]="srv.pos">
+      <nz-tab (nzClick)="switchTo(tab)" [nzDisabled]="tab.id!==srv.pos" *ngFor="let tab of srv.tabs"
+        [nzTitle]="tab.name">
+      </nz-tab>
+    </nz-tabset>
+
+
+  </nz-card>
+
+  <nz-card [nzBordered]="false" *ngIf="srv.pos===0">
+    <app-add-basic></app-add-basic>
+  </nz-card>
+  <nz-card [nzBordered]="false" *ngIf="srv.pos===1">
+    <app-add-main></app-add-main>
+  </nz-card>
+  <nz-card [nzBordered]="false" *ngIf="srv.pos===2">
+    <app-add-pics></app-add-pics>
+  </nz-card>
+  <nz-card [nzBordered]="false" *ngIf="srv.pos===3">
+    <app-add-extra></app-add-extra>
+  </nz-card>
+
+</div>

@@ -1,0 +1,45 @@
+<nz-card nzTitle="基本信息" nz-row [nzBordered]="false">
+  <form nz-form [formGroup]="form" se-container="1">
+
+    <div nz-col nzSpan="12" nzXl="8">
+      <se label="商品名称" error="请填写名称" required>
+        <input autocomplete="off" nz-input formControlName="name" placeholder="请输入商品名称" />
+      </se>
+
+      <se label="商品简介" error="请输入100字以内商品简介">
+        <textarea nz-input formControlName="description" maxlength="100" [nzAutosize]="{ minRows: 5 }"
+          name="description" placeholder="示例：冷淡风 | I Frutti Del Mostro 恶魔果实系列（100字以内）"></textarea>
+      </se>
+
+      <se label="材质" required error="请选择材质">
+        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择材质" formControlName="sort">
+          <nz-option [nzLabel]="'111'" [nzValue]="'111'"></nz-option>
+        </nz-select>
+      </se>
+      <se label="库存" required error="请输入正确的库存">
+        <input autocomplete="off" nz-input formControlName="storeCount" placeholder="请输入库存(输入数字)" />
+        <span class="unit-text">件</span>
+      </se>
+
+      <se label="商品主图" error="" required>
+        <app-image-uploader tips="" [parentNode]="this" [mediaUrl]="'piclist'" [maxCount]="3" #imgLoader>
+        </app-image-uploader>
+        <div class="form-tips img-tips"><i nz-icon class="exclamation-circle" nzType="exclamation-circle"
+            nzTheme="outline"></i>主图默认第一张，商品主图大小不能超过3M，尺寸比例为1:1</div>
+      </se>
+      <se label="商品主图" error="" required>
+        <app-image-uploader tips="" [parentNode]="this" [mediaUrl]="'piclist'" [maxCount]="3" #imgLoader>
+        </app-image-uploader>
+        <div class="form-tips img-tips"><i nz-icon class="exclamation-circle" nzType="exclamation-circle"
+            nzTheme="outline"></i>主图默认第一张，商品主图大小不能超过3M，尺寸比例为1:1</div>
+      </se>
+
+
+      <footer-toolbar errorCollect>
+        <button nz-button nzType="default" (click)="goBack()">取 消</button>
+        <button nz-button nzType="primary" (click)="save()">保存</button>
+      </footer-toolbar>
+
+    </div>
+  </form>
+</nz-card>

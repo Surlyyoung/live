@@ -1,0 +1,43 @@
+<div class="page-container">
+  <div class="page-aside">
+    <h2 class="app-name">直播管理平台</h2>
+    <div class="copyright">&copy;2009-2020 zcwh.com.cn</div>
+  </div>
+
+  <div class="page-main">
+    <div class="page-name">
+      <div class="page-title">平台管理中心</div>
+      <div class="page-desc">MANAGE CENTER</div>
+    </div>
+
+    <form class="page-form" nz-form [formGroup]="form" (ngSubmit)="submit()" role="form">
+      <nz-form-item>
+        <nz-form-control [nzErrorTip]="'请输入正确的账号'">
+          <nz-input-group nzSize="large" nzPrefixIcon="user">
+            <input nz-input formControlName="userName" placeholder="请输入正确的账号" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="'请输入正确的密码'">
+          <nz-input-group nzSize="large" nzPrefixIcon="lock">
+            <input nz-input type="password" formControlName="password" placeholder="请输入正确的密码" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-col [nzSpan]="12">
+          <label nz-checkbox formControlName="remember">记住密码</label>
+        </nz-col>
+        <nz-col [nzSpan]="12" class="text-right">
+          <a class="forgot" (click)="resetPsw()">忘记密码？</a>
+        </nz-col>
+      </nz-form-item>
+      <nz-form-item>
+        <button nz-button type="submit" nzType="primary" nzSize="large" [nzLoading]="http.loading" nzBlock>
+          登录
+        </button>
+      </nz-form-item>
+    </form>
+  </div>
+</div>

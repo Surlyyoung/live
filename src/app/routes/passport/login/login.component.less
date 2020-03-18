@@ -1,0 +1,145 @@
+@import '~@delon/theme/styles/default';
+
+@appMColor: #15142f;
+@SecondColor: #666666;
+@whiteColor: #ffffff;
+@blackColor: #0c0b27;
+
+:host {
+  display: block;
+  position: relative;
+  width: 60%;
+  max-width: 1200px;
+  min-width: 800px;
+  margin: 0 auto;
+
+  ::ng-deep {
+    .ant-tabs .ant-tabs-bar {
+      margin-bottom: 24px;
+      text-align: center;
+      border-bottom: 0;
+    }
+
+    .ant-tabs-tab {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    .ant-input-affix-wrapper .ant-input:not(:first-child) {
+      padding-left: 34px;
+    }
+
+    .icon {
+      margin-left: 16px;
+      color: rgba(0, 0, 0, 0.2);
+      font-size: 24px;
+      vertical-align: middle;
+      cursor: pointer;
+      transition: color 0.3s;
+
+      &:hover {
+        color: @primary-color;
+      }
+    }
+
+    .other {
+      margin-top: 24px;
+      line-height: 22px;
+      text-align: left;
+
+      nz-tooltip {
+        vertical-align: middle;
+      }
+
+      .register {
+        float: right;
+      }
+    }
+
+    // 重制
+    .ant-checkbox-wrapper:hover .ant-checkbox-inner,
+    .ant-checkbox:hover .ant-checkbox-inner,
+    .ant-checkbox-input:focus+.ant-checkbox-inner {
+      border-color: @blackColor;
+    }
+
+    .ant-checkbox-checked .ant-checkbox-inner {
+      // background-color: @blackColor;
+    }
+
+    .ant-btn-primary {
+      border-color: @blackColor;
+      background-color: @blackColor;
+    }
+  }
+}
+
+.page-container {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  transform: translateY(50%);
+  width: 100%;
+  background-color: @whiteColor;
+  border-radius: 8px;
+
+  .page-aside {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 50%;
+    background-image: url(../../../../assets/tmp/img-bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    .app-name {
+      color: @whiteColor;
+      font-size: 30px;
+      margin-bottom: 50px;
+    }
+
+    .copyright {
+      position: absolute;
+      bottom: 30px;
+      color: @whiteColor;
+      font-size: 10px;
+    }
+
+  }
+
+  .page-main {
+    flex: auto;
+
+    .page-name {
+      text-align: center;
+      margin: 48px auto 40px;
+
+      .page-title {
+        color: @appMColor;
+        font-size: 28px;
+        letter-spacing: 4px;
+
+      }
+
+      .page-desc {
+        color: @SecondColor;
+        letter-spacing: 2px;
+        font-size: 17px;
+      }
+    }
+
+    .page-form {
+      margin: 0 auto 40px;
+      max-width: 350px;
+    }
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .page-main {
+    margin: 40px 0;
+  }
+}
